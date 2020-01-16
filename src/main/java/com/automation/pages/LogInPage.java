@@ -24,16 +24,16 @@ public class LogInPage extends BasePage {
         emailAddressInput.sendKeys(email);
     }
 
-    public void enterPassword(String password){
+    public void enterPassword(String password) {
         passwordInput.clear();
         passwordInput.sendKeys(password);
     }
 
-    public ProfilePage signIn(String email, String password) {
+    public HomePage signIn(String email, String password) {
         enterEmailAddress(email);
         enterPassword(password);
         signInButton.click();
-        return new ProfilePage(webDriver);
+        return new HomePage(webDriver);
     }
 
     public WebElement getSignInButton() {
