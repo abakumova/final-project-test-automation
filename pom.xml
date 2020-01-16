@@ -24,5 +24,10 @@
             <artifactId>selenium-support</artifactId>
             <version>3.14.0</version>
         </dependency>
+        <dependency>
+            <groupId>ru.yandex.qatools.htmlelements</groupId>
+            <artifactId>htmlelements-java</artifactId>
+            <version>1.19</version>
+        </dependency>
     </dependencies>
 </project>
