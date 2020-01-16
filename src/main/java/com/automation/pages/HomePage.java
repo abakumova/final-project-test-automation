@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
 
-    @FindBy(xpath = "//ul[contains(@class, 'nav__links nav__links--account')]")
+    @FindBy(xpath = "//ul[@class='nav__links nav__links--account']//a[contains(text(),'Register')]")
     private WebElement signInRegisterButton;
 
     @FindBy(xpath = ".//div[@class='ui-front']/button")
@@ -18,6 +18,9 @@ public class HomePage extends BasePage {
 
     @FindBy(xpath = "//*[@id='mini-cart-dialog']/div/div/a")
     private WebElement viewShoppingBag;
+
+    @FindBy(xpath = "//ul[@class='nav__links nav__links--account']//a[contains(text(),'Account')]")
+    private WebElement myAccountButton;
 
     private SearchForm searchForm;
 
@@ -44,5 +47,37 @@ public class HomePage extends BasePage {
         cartButton.click();
         viewShoppingBag.click();
         return new CartPage(webDriver);
+    }
+
+    public boolean isMyAccountButton() {
+        return myAccountButton.isDisplayed();
+    }
+
+    public boolean isSignInRegisterButton() {
+        return signInRegisterButton.isDisplayed();
+    }
+
+    public WebElement getSignInRegisterButton() {
+        return signInRegisterButton;
+    }
+
+    public WebElement getSearchButton() {
+        return searchButton;
+    }
+
+    public WebElement getCartButton() {
+        return cartButton;
+    }
+
+    public WebElement getViewShoppingBag() {
+        return viewShoppingBag;
+    }
+
+    public WebElement getMyAccountButton() {
+        return myAccountButton;
+    }
+
+    public SearchForm getSearchForm() {
+        return searchForm;
     }
 }
