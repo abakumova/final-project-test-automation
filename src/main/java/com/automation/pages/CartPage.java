@@ -1,13 +1,14 @@
 package com.automation.pages;
 
 import com.automation.waiter.Wait;
+import lombok.Getter;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.TextBlock;
 import ru.yandex.qatools.htmlelements.element.TextInput;
 
+@Getter
 public class CartPage extends BasePage {
 
     @FindBy(xpath = "//*[@id='js-voucher-code-text']")
@@ -45,25 +46,5 @@ public class CartPage extends BasePage {
 
     public String getTotalText() {
         return total.getText();
-    }
-
-    public WebElement getCouponCodeInput() {
-        return couponCodeInput;
-    }
-
-    public WebElement getApplyButton() {
-        return applyButton;
-    }
-
-    public WebElement getQtyInput() {
-        return qtyInput;
-    }
-
-    public WebElement getPrice() {
-        return price;
-    }
-
-    public WebElement getTotal() {
-        return total;
     }
 }

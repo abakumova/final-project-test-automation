@@ -1,13 +1,14 @@
 package com.automation.pages;
 
 import com.automation.waiter.Wait;
+import lombok.Getter;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.TextBlock;
 import ru.yandex.qatools.htmlelements.element.TextInput;
 
+@Getter
 public class LogInPage extends BasePage {
 
     @FindBy(xpath = "//*[@id='j_username']")
@@ -41,10 +42,6 @@ public class LogInPage extends BasePage {
         enterPassword(password);
         signInButton.click();
         return new HomePage();
-    }
-
-    public WebElement getSignInButton() {
-        return signInButton;
     }
 
     public boolean isErrorMessageDisplayed() {

@@ -31,8 +31,26 @@ public class MyStepdefs {
         stepsForSerenity.userSeesMainPage();
     }
 
-    @Then("^user sees Error Message$")
+    @Then("^user sees Error Message about login$")
     public void userSeesErrorMessage() {
-        stepsForSerenity.userSeesErrorMessage();
+        stepsForSerenity.userSeesErrorMessageLogin();
+    }
+
+    @Given("^user opens the SignUp Page$")
+    public void userOpensTheSignUpPage() {
+        stepsForSerenity.userOpensSignupPage();
+    }
+
+    @When("^user enters invalid sign up data \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\"$")
+    public void userEntersInvalidSignUpDataFirstNameLastNameEmailPasswordConfirmPassword(String firstName,
+                                                                                         String lastName, String email,
+                                                                                         String password,
+                                                                                         String confirmPassword) {
+        stepsForSerenity.userEnterSignUpCredentials(firstName, lastName, email, password, confirmPassword);
+    }
+
+    @Then("^user sees Error Message about signup$")
+    public void userSeesErrorMessageAboutSignup() {
+        stepsForSerenity.userSeesErrorMessageSignUp();
     }
 }

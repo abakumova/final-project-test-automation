@@ -2,11 +2,12 @@ package com.automation.pages;
 
 import com.automation.fragments.SearchForm;
 import com.automation.waiter.Wait;
+import lombok.Getter;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.element.Button;
 
+@Getter
 public class HomePage extends BasePage {
 
     @FindBy(xpath = "//a[contains(text(),'Register')][1]")
@@ -57,29 +58,5 @@ public class HomePage extends BasePage {
 
     public boolean isSignInRegisterButton() {
         return signInRegisterButton.isDisplayed();
-    }
-
-    public WebElement getSignInRegisterButton() {
-        return signInRegisterButton;
-    }
-
-    public WebElement getSearchButton() {
-        return searchButton;
-    }
-
-    public WebElement getCartButton() {
-        return cartButton;
-    }
-
-    public WebElement getViewShoppingBag() {
-        return viewShoppingBag;
-    }
-
-    public WebElement getMyAccountButton() {
-        return myAccountButton;
-    }
-
-    public SearchForm getSearchForm() {
-        return searchForm;
     }
 }

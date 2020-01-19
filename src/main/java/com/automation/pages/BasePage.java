@@ -11,7 +11,7 @@ public abstract class BasePage {
 
     public BasePage() {
         WebDriverManager.getDriver().manage().window().maximize();
-        WebDriverManager.getDriver().manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        WebDriverManager.getDriver().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         PageFactory.initElements(new HtmlElementDecorator
                 (new HtmlElementLocatorFactory(WebDriverManager.getDriver())), this);
     }
