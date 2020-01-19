@@ -1,28 +1,32 @@
 package com.automation.pages;
 
-import org.openqa.selenium.WebDriver;
+import com.automation.waiter.Wait;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextBlock;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 public class CartPage extends BasePage {
 
     @FindBy(xpath = "//*[@id='js-voucher-code-text']")
-    private WebElement couponCodeInput;
+    private TextInput couponCodeInput;
 
     @FindBy(xpath = "//*[@id='js-voucher-code-text']")
-    private WebElement applyButton;
+    private Button applyButton;
 
     @FindBy(xpath = "//*[@id='quantity_0']")
-    private WebElement qtyInput;
+    private TextInput qtyInput;
 
     @FindBy(xpath = "//div[@class='price']")
-    private WebElement price;
+    private TextBlock price;
 
     @FindBy(xpath = "//div[@class='price price__total']")
-    private WebElement total;
+    private TextBlock total;
 
-    public CartPage(WebDriver webDriver) {
-        super(webDriver);
+    public CartPage() {
+        super(() -> Wait.untilAppear(By.xpath("//*[@id='js-voucher-code-text']"), 20));
     }
 
     public void enterCouponCode(String couponCode) {

@@ -1,31 +1,33 @@
 package com.automation.pages;
 
 import com.automation.fragments.SearchForm;
-import org.openqa.selenium.WebDriver;
+import com.automation.waiter.Wait;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.element.Button;
 
 public class HomePage extends BasePage {
 
-    @FindBy(xpath = "//ul[@class='nav__links nav__links--account']//a[contains(text(),'Register')]")
-    private WebElement signInRegisterButton;
+    @FindBy(xpath = "//a[contains(text(),'Register')][1]")
+    private Button signInRegisterButton;
 
     @FindBy(xpath = ".//div[@class='ui-front']/button")
-    private WebElement searchButton;
+    private Button searchButton;
 
     @FindBy(xpath = "//div[@class='nav-cart'][1]")
-    private WebElement cartButton;
+    private Button cartButton;
 
     @FindBy(xpath = "//*[@id='mini-cart-dialog']/div/div/a")
-    private WebElement viewShoppingBag;
+    private Button viewShoppingBag;
 
-    @FindBy(xpath = "//ul[@class='nav__links nav__links--account']//a[contains(text(),'Account')]")
-    private WebElement myAccountButton;
+    @FindBy(xpath = "//ul[(contains(@class, 'account'))]//a[contains(text(),'Account')]")
+    private Button myAccountButton;
 
     private SearchForm searchForm;
 
-    public HomePage(WebDriver webDriver) {
-        super(webDriver);
+    public HomePage() {
+        super(() -> Wait.untilAppear(By.xpath(".//div[@class='ui-front']/button"), 20));
     }
 
     public void search(String text) {
@@ -35,18 +37,18 @@ public class HomePage extends BasePage {
 
     public LogInPage openLogInPage() {
         signInRegisterButton.click();
-        return new LogInPage(webDriver);
+        return new LogInPage();
     }
 
     public SignUpPage openSignUpPage() {
         signInRegisterButton.click();
-        return new SignUpPage(webDriver);
+        return new SignUpPage();
     }
 
     public CartPage openCartPage() {
         cartButton.click();
         viewShoppingBag.click();
-        return new CartPage(webDriver);
+        return new CartPage();
     }
 
     public boolean isMyAccountButton() {
