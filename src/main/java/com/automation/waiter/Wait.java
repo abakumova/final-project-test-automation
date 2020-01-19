@@ -25,6 +25,11 @@ public class Wait {
         jse.executeScript("window.scrollBy(0,250)");
     }
 
+    public static void scrollPageDownSearch() {
+        JavascriptExecutor jse = (JavascriptExecutor) getDriver();
+        jse.executeScript("window.scrollBy(0,550)");
+    }
+
     private static WebDriverWait getWebDriverWait(int timeoutMs) {
         return getWebDriverWait(timeoutMs, DEFAULT_UI_TIMEOUT_MS);
     }

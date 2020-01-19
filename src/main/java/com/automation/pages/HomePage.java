@@ -13,7 +13,7 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//a[contains(text(),'Register')][1]")
     private Button signInRegisterButton;
 
-    @FindBy(xpath = ".//div[@class='ui-front']/button")
+    @FindBy(xpath = "//div[@class='ui-front']")
     private Button searchButton;
 
     @FindBy(xpath = "//div[@class='nav-cart'][1]")
@@ -31,9 +31,16 @@ public class HomePage extends BasePage {
         super(() -> Wait.untilAppear(By.xpath(".//div[@class='ui-front']/button"), 20));
     }
 
-    public void search(String text) {
+    public SearchResultsPage search(String text) {
+        searchForm = openSearchForm();
         searchForm.inputTextToSearchField(text);
-        searchForm.clickSearchButton();
+        searchForm.pressEnter();
+        return new SearchResultsPage();
+    }
+
+    public SearchForm openSearchForm(){
+        searchButton.click();
+        return new SearchForm();
     }
 
     public LogInPage openLogInPage() {
