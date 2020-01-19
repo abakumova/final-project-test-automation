@@ -17,7 +17,7 @@ public class TestClass {
     }
 
     @Test
-    public void checkSearchOnHomePage() {
+    public void checkSearchItemsTitle() {
         WebDriverManager.getDriver().navigate().refresh();
 
         SearchResultsPage searchResultsPage = new HomePage().search("Knit");
