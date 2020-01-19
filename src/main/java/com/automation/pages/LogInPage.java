@@ -1,22 +1,30 @@
 package com.automation.pages;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import com.automation.waiter.Wait;
+import lombok.Getter;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextBlock;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
+@Getter
 public class LogInPage extends BasePage {
 
     @FindBy(xpath = "//*[@id='j_username']")
-    private WebElement emailAddressInput;
+    private TextInput emailAddressInput;
 
     @FindBy(xpath = "//*[@id='j_password']")
-    private WebElement passwordInput;
+    private TextInput passwordInput;
 
     @FindBy(xpath = "//*[@id='loginFormBtn']")
-    private WebElement signInButton;
+    private Button signInButton;
 
-    public LogInPage(WebDriver webDriver) {
-        super(webDriver);
+    @FindBy(xpath = "//p[contains(@class, 'alert-plain-message')]")
+    private TextBlock errorMessage;
+
+    public LogInPage() {
+        super(() -> Wait.untilAppear(By.xpath("//*[@id='loginFormBtn']"), 20));
     }
 
     public void enterEmailAddress(String email) {
@@ -29,14 +37,14 @@ public class LogInPage extends BasePage {
         passwordInput.sendKeys(password);
     }
 
-    public HomePage signIn(String email, String password) {
-        enterEmailAddress(email);
+    public HomePage signIn(String login, String password) {
+        enterEmailAddress(login);
         enterPassword(password);
         signInButton.click();
-        return new HomePage(webDriver);
+        return new HomePage();
     }
 
-    public WebElement getSignInButton() {
-        return signInButton;
+    public boolean isErrorMessageDisplayed() {
+        return errorMessage.isDisplayed();
     }
 }

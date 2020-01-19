@@ -1,26 +1,27 @@
 package com.automation.fragments;
 
+import com.automation.pages.BasePage;
+import com.automation.waiter.Wait;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.FindBy;
-import ru.yandex.qatools.htmlelements.element.Button;
-import ru.yandex.qatools.htmlelements.element.HtmlElement;
 import ru.yandex.qatools.htmlelements.element.TextInput;
 
-@FindBy(xpath = "//div[@class='modal-body']/div[1]")
-public class SearchForm extends HtmlElement {
+public class SearchForm extends BasePage {
 
-    @FindBy(id = "js-site-search-input")
+    @FindBy(xpath = "//*[@id='js-site-search-input']")
     private TextInput searchField;
 
-    @FindBy(xpath = "//*[@id='siteSearch']//button[2]")
-    private Button searchButton;
+    public SearchForm() {
+        super(() -> Wait.untilAppear(By.xpath("//*[@id='js-site-search-input']"), 10));
+    }
 
     public void inputTextToSearchField(String text) {
         searchField.clear();
         searchField.sendKeys(text);
     }
 
-    public void clickSearchButton() {
-        searchButton.click();
-        searchButton.sendKeys("something");
+    public void pressEnter() {
+        searchField.sendKeys(Keys.ENTER);
     }
 }

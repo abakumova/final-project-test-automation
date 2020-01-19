@@ -1,31 +1,41 @@
 package com.automation.pages;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import com.automation.waiter.Wait;
+import lombok.Getter;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextBlock;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
+import static com.automation.waiter.Wait.scrollPageDown;
+
+@Getter
 public class SignUpPage extends BasePage {
 
     @FindBy(xpath = "//*[@id='register.firstName']")
-    private WebElement firstNameInput;
+    private TextInput firstNameInput;
 
     @FindBy(xpath = "//*[@id='register.lastName']")
-    private WebElement lastNameInput;
+    private TextInput lastNameInput;
 
     @FindBy(xpath = "//*[@id='register.email']")
-    private WebElement emailAddressInput;
+    private TextInput emailAddressInput;
 
     @FindBy(xpath = "//*[@id='password']")
-    private WebElement passwordInput;
+    private TextInput passwordInput;
 
     @FindBy(xpath = "//*[@id='register.checkPwd']")
-    private WebElement confirmPasswordInput;
+    private TextInput confirmPasswordInput;
 
     @FindBy(xpath = "//*[@id='registerFormBtn']")
-    private WebElement registerButton;
+    private Button registerButton;
 
-    public SignUpPage(WebDriver webDriver) {
-        super(webDriver);
+    @FindBy(xpath = "//p[contains(@class, 'alert-plain-message')]")
+    private TextBlock errorMessage;
+
+    public SignUpPage() {
+        super(() -> Wait.untilAppear(By.xpath("//*[@id='registerFormBtn']"), 20));
     }
 
     public void enterFirstName(String firstName) {
@@ -53,17 +63,18 @@ public class SignUpPage extends BasePage {
         confirmPasswordInput.sendKeys(confirmPassword);
     }
 
-    public WebElement getRegisterButton() {
-        return registerButton;
-    }
-
-    public ProfilePage signUp(String firstName, String lastName, String email, String password, String confirmPassword) {
+    public SignUpPage signUp(String firstName, String lastName, String email, String password, String confirmPassword) {
         enterFirstName(firstName);
         enterLastName(lastName);
         enterEmail(email);
         enterPassword(password);
         enterConfirmPassword(confirmPassword);
+        scrollPageDown();
         registerButton.click();
-        return new ProfilePage(webDriver);
+        return new SignUpPage();
+    }
+
+    public boolean isErrorMessageDisplayed() {
+        return errorMessage.isDisplayed();
     }
 }
