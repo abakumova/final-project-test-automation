@@ -1,6 +1,6 @@
-package com.automation.tests.stepdefs;
+package com.automation.tests.bdd.stepdefs;
 
-import com.automation.tests.serenity.StepsForSerenity;
+import com.automation.tests.bdd.serenity.StepsForSerenity;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;

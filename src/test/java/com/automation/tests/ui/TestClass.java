@@ -3,15 +3,14 @@ package com.automation.tests.ui;
 import com.automation.driver.WebDriverManager;
 import com.automation.pages.HomePage;
 import com.automation.pages.SearchResultsPage;
-import org.junit.Assert;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class TestClass {
 
-    @BeforeEach
+    @BeforeMethod
     void openSitePage() {
         WebDriverManager.setUpDriverConfig();
         WebDriverManager.getDriver().get("https://www.neweracap.com/");
@@ -33,7 +32,15 @@ public class TestClass {
         Assert.assertEquals(12, searchResultsPage.getSearchResultItemsNames().size());
     }
 
-    @AfterEach
+    @Test
+    public void checkQuantityItemsOnPageAfterChanging() {
+        WebDriverManager.getDriver().navigate().refresh();
+        SearchResultsPage searchResultsPage = new HomePage().search("Knit");
+        searchResultsPage.changeQuantityOfItemsOnPage();
+        Assert.assertEquals(24, searchResultsPage.getSearchResultItemsNames().size());
+    }
+
+    @AfterMethod
     void closeBrowser() {
         WebDriverManager.quit();
     }
