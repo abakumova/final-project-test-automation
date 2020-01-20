@@ -1,4 +1,4 @@
-package com.automation.tests.serenity;
+package com.automation.tests.bdd.serenity;
 
 import com.automation.driver.WebDriverManager;
 import com.automation.pages.HomePage;

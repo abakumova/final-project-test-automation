@@ -1,0 +1,7 @@
+<suite name="uiSuite">
+    <test name="TestClass">
+        <classes>
+            <class name="com.automation.tests.ui.TestClass"/>
+        </classes>
+    </test>
+</suite>
