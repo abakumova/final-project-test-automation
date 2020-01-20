@@ -1,5 +1,6 @@
 package com.automation.pages;
 
+import com.automation.driver.WebDriverManager;
 import com.automation.fragments.SearchResultItem;
 import com.automation.waiter.Wait;
 import org.openqa.selenium.By;
@@ -9,6 +10,7 @@ import ru.yandex.qatools.htmlelements.element.HtmlElement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class SearchResultsPage extends BasePage {
 
@@ -22,6 +24,7 @@ public class SearchResultsPage extends BasePage {
         super(() -> {
             Wait.scrollPageDownSearch();
             Wait.untilAppear(By.className("product__list--wrapper"), 15);
+            WebDriverManager.getDriver().manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
         });
     }
 
