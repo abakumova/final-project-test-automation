@@ -19,6 +19,9 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//ul[(contains(@class, 'account'))]//a[contains(text(),'Account')]")
     private Button myAccountButton;
 
+    @FindBy(xpath = "//*[@id='accNavComponentDesktopOne']//a[contains(text(), 'Sign Out')]")
+    private Button signOutButton;
+
     private SearchForm searchForm;
 
     public HomePage() {
@@ -32,7 +35,7 @@ public class HomePage extends BasePage {
         return new SearchResultsPage();
     }
 
-    public SearchForm openSearchForm(){
+    public SearchForm openSearchForm() {
         searchButton.click();
         return new SearchForm();
     }
@@ -47,11 +50,21 @@ public class HomePage extends BasePage {
         return new SignUpPage();
     }
 
-    public boolean isMyAccountButton() {
+    public HomePage clickSignOutButton() {
+        signOutButton.click();
+        return new HomePage();
+    }
+
+    public HomePage clickMyProfileButton() {
+        myAccountButton.click();
+        return new HomePage();
+    }
+
+    public boolean isMyAccountButtonDisplayed() {
         return myAccountButton.isDisplayed();
     }
 
-    public boolean isSignInRegisterButton() {
+    public boolean isSignInRegisterButtonDisplayed() {
         return signInRegisterButton.isDisplayed();
     }
 }

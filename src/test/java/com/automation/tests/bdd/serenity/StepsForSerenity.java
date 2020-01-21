@@ -33,7 +33,7 @@ public class StepsForSerenity {
 
     @Step("Then the user appears on the Main page with My Account button")
     public void userSeesMainPage() {
-        Assert.assertTrue("MyAccount button is not visible", homePage.isMyAccountButton());
+        Assert.assertTrue("MyAccount button is not visible", homePage.isMyAccountButtonDisplayed());
         WebDriverManager.quit();
     }
 

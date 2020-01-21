@@ -47,6 +47,24 @@ public class TestClass {
         Assert.assertTrue(searchResultsPage.getNoResultsBlockText().contains("NO RESULTS FOR"));
     }
 
+    @Test
+    public void checkMyAccountButtonVisibility() {
+        HomePage homePage = new HomePage()
+                .openLogInPage()
+                .signIn("finaltestuser@final.com", "finaltestuser");
+        Assert.assertTrue(homePage.getMyAccountButton().isDisplayed());
+    }
+
+    @Test
+    public void checkSignOut() {
+        HomePage homePage = new HomePage()
+                .openLogInPage()
+                .signIn("finaltestuser@final.com", "finaltestuser")
+                .clickMyProfileButton()
+                .clickSignOutButton();
+        Assert.assertTrue(homePage.isSignInRegisterButtonDisplayed());
+    }
+
     @AfterMethod
     void closeBrowser() {
         WebDriverManager.quit();
