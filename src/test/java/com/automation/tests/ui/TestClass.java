@@ -40,6 +40,13 @@ public class TestClass {
         Assert.assertEquals(24, searchResultsPage.getSearchResultItemsNames().size());
     }
 
+    @Test
+    public void checkNoResultSearch() {
+        WebDriverManager.getDriver().navigate().refresh();
+        SearchResultsPage searchResultsPage = new HomePage().search("ZZZZZ");
+        Assert.assertTrue(searchResultsPage.getNoResultsBlockText().contains("NO RESULTS FOR"));
+    }
+
     @AfterMethod
     void closeBrowser() {
         WebDriverManager.quit();

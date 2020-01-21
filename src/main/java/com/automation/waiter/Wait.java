@@ -20,6 +20,11 @@ public class Wait {
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
+    public static void untilClickable(By locator, int timeoutMs) {
+        WebDriverWait webDriverWait = getWebDriverWait(timeoutMs);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
     public static void scrollPageDown() {
         JavascriptExecutor jse = (JavascriptExecutor) getDriver();
         jse.executeScript("window.scrollBy(0,250)");

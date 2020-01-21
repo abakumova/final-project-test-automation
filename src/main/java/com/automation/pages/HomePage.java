@@ -16,12 +16,6 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//div[@class='ui-front']")
     private Button searchButton;
 
-    @FindBy(xpath = "//div[@class='nav-cart'][1]")
-    private Button cartButton;
-
-    @FindBy(xpath = "//*[@id='mini-cart-dialog']/div/div/a")
-    private Button viewShoppingBag;
-
     @FindBy(xpath = "//ul[(contains(@class, 'account'))]//a[contains(text(),'Account')]")
     private Button myAccountButton;
 
@@ -51,12 +45,6 @@ public class HomePage extends BasePage {
     public SignUpPage openSignUpPage() {
         signInRegisterButton.click();
         return new SignUpPage();
-    }
-
-    public CartPage openCartPage() {
-        cartButton.click();
-        viewShoppingBag.click();
-        return new CartPage();
     }
 
     public boolean isMyAccountButton() {

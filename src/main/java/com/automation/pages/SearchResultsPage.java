@@ -10,6 +10,7 @@ import ru.yandex.qatools.htmlelements.annotations.Timeout;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
 import ru.yandex.qatools.htmlelements.element.Select;
+import ru.yandex.qatools.htmlelements.element.TextBlock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,13 +29,16 @@ public class SearchResultsPage extends BasePage {
     @FindBy(xpath = "//span[@class='text'][contains(text(), 24)]")
     private Button quantityButton;
 
+    @FindBy(xpath = "//div[@class='headline']")
+    private TextBlock noResultsBlock;
+
     private List<SearchResultItem> searchResultItemList;
 
     public SearchResultsPage() {
         super(() -> {
             Wait.scrollPageDownSearch();
-            Wait.untilAppear(By.className("product__list--wrapper"), 150);
-            WebDriverManager.getDriver().manage().timeouts().setScriptTimeout(45, TimeUnit.SECONDS);
+            Wait.untilClickable(By.xpath("//div[contains(@class, 'back-to-top')]"), 150);
+            WebDriverManager.getDriver().manage().timeouts().setScriptTimeout(55, TimeUnit.SECONDS);
         });
     }
 
@@ -47,5 +51,9 @@ public class SearchResultsPage extends BasePage {
     public void changeQuantityOfItemsOnPage() {
         quantitySelect.click();
         quantityButton.click();
+    }
+
+    public String getNoResultsBlockText() {
+        return noResultsBlock.getText();
     }
 }
