@@ -37,15 +37,14 @@ public class SearchResultsPage extends BasePage {
     public SearchResultsPage() {
         super(() -> {
             Wait.scrollPageDownSearch();
-            Wait.untilClickable(By.xpath("//div[contains(@class, 'back-to-top')]"), 150);
             WebDriverManager.getDriver().manage().timeouts().setScriptTimeout(55, TimeUnit.SECONDS);
+            Wait.untilClickable(By.xpath("//div[contains(@class, 'back-to-top')]"), 180);
         });
     }
 
     public List<String> getSearchResultItemsNames() {
         List<String> names = new ArrayList<>();
         searchResultItemList.forEach(item -> names.add(item.getItemName()));
-        names.forEach(System.out::println);
         return names;
     }
 

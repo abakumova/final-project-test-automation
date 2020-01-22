@@ -1,11 +1,11 @@
 package com.automation.waiter;
 
-import com.automation.driver.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
 
 import static com.automation.driver.WebDriverManager.getDriver;
 
@@ -25,6 +25,7 @@ public class Wait {
     public static void untilClickable(By locator, int timeoutMs) {
         WebDriverWait webDriverWait = getWebDriverWait(timeoutMs);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(locator));
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
     public static void scrollPageDown() {
@@ -33,14 +34,10 @@ public class Wait {
     }
 
     public static void scrollPageDownSearch() {
+        getWebDriverWait(1000);
         JavascriptExecutor jse = (JavascriptExecutor) getDriver();
-        jse.executeScript("window.scrollBy(0,550)");
-        new WebDriverWait(getDriver(), 10).until(
-                webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
-        new WebDriverWait(WebDriverManager.getDriver(), 2000).until((ExpectedCondition<Boolean>) driver -> {
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            return (Boolean) js.executeScript("return jQuery.active == 0");
-        });
+        jse.executeScript("window.scrollBy(0,650)");
+        getDriver().manage().timeouts().implicitlyWait(300, TimeUnit.SECONDS);
     }
 
     private static WebDriverWait getWebDriverWait(int timeoutMs) {
