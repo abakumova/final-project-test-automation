@@ -17,23 +17,23 @@ public class TestClass {
     }
 
     @Test
-    public void checkSearchItemsTitle() {
+    public void checkSearchItemsTitleTest() {
         WebDriverManager.getDriver().navigate().refresh();
-        SearchResultsPage searchResultsPage = new HomePage().search("Knit");
+        SearchResultsPage searchResultsPage = new HomePage().search("Cap");
         searchResultsPage.getSearchResultItemsNames()
                 .forEach(itemName ->
-                        Assert.assertTrue(itemName.contains("KNIT")));
+                        Assert.assertTrue(itemName.contains("CAP")));
     }
 
     @Test
-    public void checkQuantityItemsOnPage() {
+    public void checkQuantityItemsOnPageTest() {
         WebDriverManager.getDriver().navigate().refresh();
         SearchResultsPage searchResultsPage = new HomePage().search("Knit");
         Assert.assertEquals(12, searchResultsPage.getSearchResultItemsNames().size());
     }
 
     @Test
-    public void checkQuantityItemsOnPageAfterChanging() {
+    public void checkQuantityItemsOnPageAfterChangingTest() {
         WebDriverManager.getDriver().navigate().refresh();
         SearchResultsPage searchResultsPage = new HomePage().search("Knit");
         searchResultsPage.changeQuantityOfItemsOnPage();
@@ -41,14 +41,14 @@ public class TestClass {
     }
 
     @Test
-    public void checkNoResultSearch() {
+    public void checkNoResultSearchTest() {
         WebDriverManager.getDriver().navigate().refresh();
         SearchResultsPage searchResultsPage = new HomePage().search("ZZZZZ");
         Assert.assertTrue(searchResultsPage.getNoResultsBlockText().contains("NO RESULTS FOR"));
     }
 
     @Test
-    public void checkMyAccountButtonVisibility() {
+    public void checkMyAccountButtonVisibilityTest() {
         HomePage homePage = new HomePage()
                 .openLogInPage()
                 .signIn("finaltestuser@final.com", "finaltestuser");
@@ -56,7 +56,7 @@ public class TestClass {
     }
 
     @Test
-    public void checkSignOut() {
+    public void checkSignOutTest() {
         HomePage homePage = new HomePage()
                 .openLogInPage()
                 .signIn("finaltestuser@final.com", "finaltestuser")

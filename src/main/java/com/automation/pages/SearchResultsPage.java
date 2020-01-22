@@ -45,6 +45,7 @@ public class SearchResultsPage extends BasePage {
     public List<String> getSearchResultItemsNames() {
         List<String> names = new ArrayList<>();
         searchResultItemList.forEach(item -> names.add(item.getItemName()));
+        names.forEach(System.out::println);
         return names;
     }
 
