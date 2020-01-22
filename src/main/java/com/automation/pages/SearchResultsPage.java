@@ -36,13 +36,13 @@ public class SearchResultsPage extends BasePage {
 
     public SearchResultsPage() {
         super(() -> {
-            Wait.scrollPageDownSearch();
             WebDriverManager.getDriver().manage().timeouts().setScriptTimeout(55, TimeUnit.SECONDS);
             Wait.untilClickable(By.xpath("//div[contains(@class, 'back-to-top')]"), 180);
         });
     }
 
     public List<String> getSearchResultItemsNames() {
+        Wait.scrollPageDownSearch();
         List<String> names = new ArrayList<>();
         searchResultItemList.forEach(item -> names.add(item.getItemName()));
         return names;
