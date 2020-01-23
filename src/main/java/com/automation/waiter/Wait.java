@@ -5,6 +5,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.concurrent.TimeUnit;
+
 import static com.automation.driver.WebDriverManager.getDriver;
 
 public class Wait {
@@ -33,9 +35,11 @@ public class Wait {
 
     public static void scrollPageDownSearch() {
         JavascriptExecutor jse = (JavascriptExecutor) getDriver();
-        jse.executeScript("window.scrollBy(0,700)");
-        WebDriverWait webDriverWait = getWebDriverWait(300);
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class = 'product-item--visible'][last()]")));
+        jse.executeScript("window.scrollBy(0,600)");
+        getDriver().manage().timeouts().implicitlyWait(3000, TimeUnit.SECONDS);
+        jse.executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 8000);");
+        WebDriverWait webDriverWait = new WebDriverWait(getDriver(), 30);
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li.product-item:nth-of-type(12)")));
     }
 
     private static WebDriverWait getWebDriverWait(int timeoutMs) {
