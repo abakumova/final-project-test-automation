@@ -34,7 +34,7 @@ public class SearchResultsPage extends BasePage {
 
     private List<SearchResultItem> searchResultItemList;
 
-    public SearchResultsPage() {
+    SearchResultsPage() {
         super(() -> {
             WebDriverManager.getDriver().manage().timeouts().setScriptTimeout(55, TimeUnit.SECONDS);
             Wait.untilClickable(By.xpath("//div[contains(@class, 'back-to-top')]"), 180);

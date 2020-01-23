@@ -9,10 +9,10 @@ import net.thucydides.core.annotations.Steps;
 public class MyStepdefs {
 
     @Steps
-    StepsForSerenity stepsForSerenity;
+    private StepsForSerenity stepsForSerenity;
 
     @Given("^user opens the LogIn Page$")
-    public void user_opens_the_LogIn_Page() {
+    public void userOpensTheLogInPage() {
         stepsForSerenity.userOpensLoginPage();
     }
 
