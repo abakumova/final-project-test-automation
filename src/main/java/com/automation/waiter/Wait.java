@@ -1,5 +1,6 @@
 package com.automation.waiter;
 
+import lombok.experimental.UtilityClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -9,13 +10,10 @@ import java.util.concurrent.TimeUnit;
 
 import static com.automation.driver.WebDriverManager.getDriver;
 
+@UtilityClass
 public class Wait {
 
     private static final int DEFAULT_UI_TIMEOUT_MS = 2;
-
-    private Wait() {
-
-    }
 
     public static void untilAppear(By locator, int timeoutMs) {
         WebDriverWait webDriverWait = getWebDriverWait(timeoutMs);
