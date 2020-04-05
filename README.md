@@ -2,7 +2,7 @@
 
 The project is a final task of Pre-production. The main goal is to show the skills in Test Automation after training.  
 
-The project consists of custon WebDriverManager class, strategy for choosing appropriate driver instance,  pages and elements, BDD tests (2 feature files), UI tests. Tests are subdivided into suites.
+The project consists of the custom WebDriverManager class, the strategy for choosing appropriate driver instance,  pages and elements, BDD tests (2 feature files), UI tests. Tests are subdivided into suites.
 
 When performing the task (writing a script to test site functionality) was applied:
 * ### approaches:
